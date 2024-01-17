@@ -5,7 +5,11 @@ import time
 
 def login(browser):
     browser.get("https://www.instagram.com/?hl=en")
+    
+    browser.find_element(By.XPATH, '//button[contains(text(), "Allow all cookies")]').click()
+
     time.sleep(5)
+
     username = browser.find_element(By.CSS_SELECTOR, "[name='username']")
     password = browser.find_element(By.CSS_SELECTOR, "[name='password']")
     login = browser.find_element(By.CSS_SELECTOR, "button")
@@ -16,10 +20,9 @@ def login(browser):
     password.send_keys("")
     login.click()
 
+    time.sleep(10)
 
-
-    time.sleep(5)
-
+    browser.find_element(By.XPATH, '//div[contains(text(), "Not now")]').click()
 
 def Vist_Tag(browser, url):
     sleepy_time = 6
@@ -31,14 +34,13 @@ def Vist_Tag(browser, url):
     image_count = 0
 
     for picture in pictures:
-        if image_count >= 5:
+        if image_count >= 15:
             break
 
         picture.click()
         time.sleep(sleepy_time)
 
         browser.find_element(By.CSS_SELECTOR, "[aria-label='Like']").click()
-
         browser.find_element(By.CSS_SELECTOR, "svg[aria-label='Close']").click()
 
         image_count += 1
@@ -49,13 +51,33 @@ def main():
     login(browser)
 
     tags = [ 
-        "yoga",
-        "aesthetic",
-        "yogainspo",
-        "polishgirl",
-        "aloyoga",
-        "oysho",
-        "stretch",
+    #   "yoga",
+        # "yogapose",
+        # "wheelpose",
+        # "yogabackbend",
+    #     "polishgirl",
+    #     "aloyoga",
+    #     "oysho",
+    #     "stretch",
+    #     "yogainspiration",
+         "yogaaesthetic",
+         "wellnessgoals",
+         "healthandwellness",
+         "yogaflow",
+    #     "yogaprogress",
+    #     "yogapractice",
+    #     "yogainspo",
+    #     "polskadziewczyna",
+    #     "polskakobieta",
+    #     "blondie",
+    #     "blond",
+    #     "blondme",
+    #     "blondebalayage",
+    #     "polishmodel",
+    #     "bizuteriaapart",
+    #     "outfits",
+    #     "jewellery",
+    #     "wspolpraca"
     ]
 
     while True:
